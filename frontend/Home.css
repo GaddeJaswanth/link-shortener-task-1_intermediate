@@ -1,0 +1,29 @@
+body {
+    text-align: center;
+}
+.container {
+    margin: auto;
+}
+#url {
+    padding: 12px 15px;
+    border-radius: 10px;
+    width: 400px;
+}
+#submitButton {
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(4, 113, 62);
+}
+#copy {
+    padding: 10px;
+    background-color: rgb(2, 73, 73);
+    border-radius: 5px;
+    color: white;
+}
+#short {
+    padding: 8px 10px;
+    border-radius: 3px;
+    width: 220px;
+}

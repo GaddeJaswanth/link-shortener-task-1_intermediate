@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Link Shortener</title>
+        <link rel="stylesheet" href="/url_shortener_service-master/frontend/Home.css">
+    </head>
+
+    <script>
+        async function handleSubmit(){
+            const url = document.getElementById("url");
+            if(url.value === ""){
+                alert("Enter Valid URL");
+            }
+            else {
+                const response = await fetch('http://localhost:5000/api/url/shorten', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type':'application/json',
+                        'access-control-allow-origin': '*'  
+                    },
+                    body:JSON.stringify({'longUrl':url.value})
+                    
+                }).then(res=>res.json())
+                .then(res=>{
+                    document.getElementById("short").value=res.shortUrl;
+                    return res;
+                })
+                .then(res=>console.log(res))
+                .catch(error=>console.log('error'));
+            }
+        }
+        function copyURL(){
+            navigator.clipboard.writeText(document.getElementById('short').value);
+            alert("Link Copied to Clipboard")
+        }
+    </script>
+
+    <body>
+        <h1 align='center'>Link Shortener</h1>
+        <br/>
+
+        <div class="container">
+            <input type="text" id="url" placeholder="Enter URL"/> &nbsp;
+            <button onclick="handleSubmit()" id="submitButton">Shorten</button> <br /><br /><br /><br />
+
+            <button onclick="copyURL()" id="copy">Copy Link</button> &nbsp;
+            <input type="text" id="short" placeholder="Copy your short URL from here" readonly/> &nbsp;
+        </div>
+    </body>
+</html>
